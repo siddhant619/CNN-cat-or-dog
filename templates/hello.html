@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Hello</title>
+	<script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+</head>
+<body>
+	<form>
+		<label for='name'>Enter name</label>
+		<input type='text' id ='name' name='name'>
+		<button id='btn'> Submit</button>
+	</form>
+	<p id='greeting'></p>
+	<script >
+	 
+		$('#btn').click(function(event){
+			
+	//		var name=$('#name').val();
+			//alert(name);
+			let msg={
+				name:$("#name").val()
+			}
+			$.post("http://127.0.0.1:5000/post_user",JSON.stringify(msg),function(response){
+				$('#greeting').text(response.greeting);
+				alert(response.greeting);
+				console.log(response);
+			});
+
+		});
+		</script>
+	
+</body>
+</html>
